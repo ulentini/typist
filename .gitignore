@@ -87,3 +87,4 @@ typings/
 
 # IntelliJ directory
 /.idea/
+/src/css/tailwind.css
