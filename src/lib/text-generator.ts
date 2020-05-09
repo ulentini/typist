@@ -6,5 +6,6 @@ export function generateText(totalWords: number) {
     .map(() => {
       return words[Math.round(Math.random() * words.length)]
     })
+    .filter(Boolean)
     .join(" ")
 }

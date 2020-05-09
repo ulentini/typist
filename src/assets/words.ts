@@ -114,7 +114,6 @@ export default [
   "passare",
   "pensare",
   "per",
-  "perder",
   "perdere",
   "perfetto",
   "piano",
