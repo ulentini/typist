@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 
 export const Word: React.FC<{
   content: string
@@ -9,7 +9,7 @@ export const Word: React.FC<{
 }> = ({ content, active = false, typed = false, buffer, elementRef }) => {
   if (!typed) {
     return (
-      <span className="inline-block">
+      <span className="inline-block pr-3">
         {content.split("").map((letter, i) => (
           <span
             key={`l-${i}`}
@@ -25,7 +25,7 @@ export const Word: React.FC<{
   const cursorIndex = buffer?.length || 0
 
   return (
-    <span className="inline-block" ref={elementRef}>
+    <span className="inline-block pr-3" ref={elementRef}>
       {content.split("").map((letter, i) => {
         let className
         if (cursorIndex === i && active) {

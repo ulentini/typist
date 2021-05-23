@@ -1,11 +1,7 @@
 {
   "env": {
-    "jest": true,
-    "browser": true,
-    "node": true,
-    "es6": true
+    "jest": true
   },
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -14,17 +10,13 @@
     }
   },
   "extends": [
-    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
   ],
   "plugins": ["prettier"],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "rules": {
     "prettier/prettier": [
       "error",
@@ -38,8 +30,7 @@
     "no-await-in-loop": "error",
     "no-console": 0,
     "no-return-await": "error",
-    "@typescript-eslint/member-delimiter-style": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "@typescript-eslint/no-unused-vars": "error"
   }
 }

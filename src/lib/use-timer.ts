@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react"
 
-export function useInterval(callback: () => void, timeInterval: number) {
+export function useInterval(
+  callback: () => void,
+  timeInterval: number,
+): () => void {
   const savedCallback = useRef<() => void>()
   const [stopInterval, setStopInterval] = useState<() => void>(() => () => {})
 
@@ -19,12 +22,18 @@ export function useInterval(callback: () => void, timeInterval: number) {
     }
     setStopInterval(() => stopInterval)
     return stopInterval
-  }, [])
+  }, [timeInterval])
 
   return stopInterval
 }
 
-export function useTimer(second: number) {
+export function useTimer(second: number): {
+  timer: number
+  running: boolean
+  ended: boolean
+  start: () => void
+  stop: () => void
+} {
   const [running, setRunning] = useState(false)
   const [ended, setEnded] = useState(false)
   const [endTime, setEndTime] = useState(0)

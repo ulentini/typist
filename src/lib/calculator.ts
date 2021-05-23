@@ -1,4 +1,7 @@
-export function calculateWPM(typedCharacters: number, timeInSeconds: number) {
+export function calculateWPM(
+  typedCharacters: number,
+  timeInSeconds: number,
+): number {
   return (typedCharacters / timeInSeconds) * 60
 }
 
@@ -6,7 +9,7 @@ export function calculateTextWPM(
   originalContent: string,
   typedContent: string,
   timeInSeconds: number,
-) {
+): number {
   if (timeInSeconds === 0) {
     return 0
   }

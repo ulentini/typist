@@ -1,9 +1,9 @@
 import useEventListener from "use-typed-event-listener"
 import { useState } from "react"
 
-export function useTypingBuffer(maxLenght: number) {
+export function useTypingBuffer(maxLenght: number): string {
   const [buffer, setBuffer] = useState("")
-  useEventListener(document.body, "keypress", e => {
+  useEventListener(document.body, "keypress", (e) => {
     const charcode = e.charCode
     const char = String.fromCharCode(charcode)
     const newString = buffer + char
@@ -12,7 +12,7 @@ export function useTypingBuffer(maxLenght: number) {
     }
   })
 
-  useEventListener(document.body, "keydown", e => {
+  useEventListener(document.body, "keydown", (e) => {
     if (e.keyCode === 8) {
       setBuffer(buffer.substring(0, buffer.length - 1))
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { calculateTextWPM } from "../lib/calculator"
 import { useInterval, useTimer } from "../lib/use-timer"
 import { useTypingBuffer } from "../lib/use-typing-buffer"
@@ -29,24 +29,24 @@ export const Typist: React.FC<{
   const activeBuffer = useTypingBuffer(content.length)
   const [buffer, setBuffer] = useState(activeBuffer)
 
-  function updateWpm() {
+  const updateWpm = useCallback(() => {
     if (running) {
       setWpm(calculateTextWPM(content, buffer, TOTAL_TIME - timer).toFixed(0))
     }
-  }
+  }, [setWpm, buffer, content, running, timer])
 
   useEffect(() => {
     if (!ended) {
       setBuffer(activeBuffer)
     }
-  }, [activeBuffer])
+  }, [activeBuffer, ended])
 
   useEffect(() => {
     scrollToRef(containerRef, currentWordRef)
     if (buffer?.length > 0 && !running) {
       startTyping()
     }
-  }, [buffer])
+  }, [buffer, running, startTyping])
 
   const stopWpmInterval = useInterval(() => {
     updateWpm()
@@ -57,7 +57,7 @@ export const Typist: React.FC<{
       updateWpm()
       stopWpmInterval()
     }
-  }, [ended])
+  }, [ended, stopWpmInterval, updateWpm])
 
   return (
     <div className="w-full">
